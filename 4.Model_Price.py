@@ -32,6 +32,5 @@ df_fi = pd.DataFrame({'coefficient' : modelGB.feature_importances_, 'features' :
 print(df_fi.sort_values(by='coefficient', ascending=False))
 print(modelGB.feature_importances_)
 print(xtrain.columns.values)
-print(skorGB)
 import joblib
 joblib.dump([modelGB, skorGB, dict_col], 'modelGB')

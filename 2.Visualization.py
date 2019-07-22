@@ -78,7 +78,7 @@ ax[1].set_title('Number of Listings by Property', fontsize=12)
 ax[1].yaxis.grid(True)
 plt.suptitle('Airbnb in Central Singapore Area', fontsize=18, weight='bold')
 plt.subplots_adjust(top=.88, wspace=0.3)
-# plt.show()
+plt.show()
 plt.close()
 
 # Figure : Property_type vs price ---------------------------------------------------------------------
@@ -119,7 +119,7 @@ plt.close()
 # Figure : Area vs price -----------------------------------------------------------------------------
 df.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4,c="total_price", cmap=plt.get_cmap("gnuplot2_r"), colorbar=True, figsize=(10,8))
 plt.title('Airbnb Singapore Price', fontsize=12)
-plt.show()
+# plt.show()
 plt.close()
 # Figure : Area vs price -----------------------------------------------------------------------------
 fig, ax = plt.subplots(figsize = (10,8))
@@ -178,4 +178,4 @@ plt.show()
 plt.close()
 
 # save to csv
-df.to_csv('data-airbnbsg_cleaned.csv', header=True, index=False) 
+df.to_csv('data-airbnbsg_cleaned.csv', header=True, index=False)

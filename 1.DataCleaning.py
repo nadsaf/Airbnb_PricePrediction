@@ -63,7 +63,7 @@ group_numeric = df.select_dtypes(include=['int64', 'float64']).columns.values
 
 df = df.dropna(subset=['number_of_reviews', 'bathrooms', 'bedrooms', 'beds', 'accommodates'])
 
-df['bedrooms'] = df['bedrooms'].clip(lower=1)
+df['bedrooms'] = df['bedrooms'].clip(lower=1, upper=10)
 
 df = df[df['minimum_nights_avg_ntm'] <30]
 
@@ -94,6 +94,8 @@ print(len(df['area'].unique()))
 print(len(df))
 
 print(df['total_price'].describe())
+
+print(df)
 
 
 # save to csv

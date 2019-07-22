@@ -60,7 +60,7 @@ def priceprediction():
         price_SGD = round(raw['USD_SGD'] * price, 2)
         price_IDR = round(raw['USD_IDR'] * price, 2)
         result = {
-            'price' : price, 'price_IDR' : price_IDR, 'price_SGD' : price_SGD, 'skorGB' : skorGB
+            'price' : abs(price), 'price_IDR' : abs(price_IDR), 'price_SGD' : abs(price_SGD), 'skorGB' : skorGB
         }
 
         # Recommendation based on Area

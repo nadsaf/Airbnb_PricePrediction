@@ -101,7 +101,7 @@ ax = sns.barplot(
     y= 'features', data= df_log, palette=color)
 
 plt.ylabel('Features')
-plt.title('Logistic Regression \n score : {}%'.format(round(skorGB, 2)*100))
+plt.title('Logistic Regression \n score : {}%'.format(round(skorL, 2)*100))
 
 plt.tight_layout()
 plt.subplots_adjust(left= .26)
