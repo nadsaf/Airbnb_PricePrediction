@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Price Estimatation</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    </head>
+    <style>
+    body{
+      font-family: 'Brown';
+    }
+    h1 {
+        color: rgb(255, 90, 95);
+        font-weight: bold;
+        font-family: 'Brown';
+        font-size: 53px
+        ;
+    }
+    hr{
+        width: 400px;
+        margin-top: 10px;
+        margin-bottom: 10px
+    }
+    p{
+        font-family: 'Brown';
+        font-size: 25px;
+        display: inline;
+    }
+    .p1{
+        font-family: 'Brown';
+        font-size: 20px;
+        font-weight: 300;
+        display: inline;
+    }
+    .p2{
+        font-family: 'Brown';
+        font-size: 18px;
+        font-weight: 300;
+        text-align: justify
+
+    }
+    .p3{
+        text-align: right;
+        font-size: 18px
+    }
+    .container{
+        width: 360px;
+        text-align: justify
+    }
+    img{
+        margin-top: 20px;
+        margin-bottom: 20px
+    }
+
+    </style>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://localhost:5000/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://localhost:5000/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Info
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="http://localhost:5000/map">Map</a>
+                        <a class="dropdown-item" href="http://localhost:5000/price">Price per area</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+    <center>
+        <img src="http://localhost:5000/filetemp/airbnb-logo.png" width="500px" height="auto" alt="price estimator"/>     
+        <br>
+        <p style="width: bold">${{"  {:,}".format(result.price)}}</p><div class="p1"> per night</div>
+        <hr>
+        <div class="container">
+            <div class="p2">
+                <b>Area </b> {{form_all.area}}<br>
+                <b>Guests</b> {{form_all.guests}}<br>
+                <b>Bedrooms</b> {{form_all.bedrooms}}<br>
+                <b>Property Type</b>  {{form_all.propertytype}}<br>
+                <b>Room Type</b> {{form_all.room}}<br>
+                <b>Host</b> {{form_all.superhost}}<br>
+            </div>
+        </div>
+        <hr>
+        <div class="p2" style="text-align: center">
+                Price per night in <b>SGD {{' '"{:,}".format(result.price_SGD)}}</b></p><br>
+                Price per night in <b>IDR {{' '"{:,}".format(result.price_IDR)}}</b></p>   
+        </div>
+        <hr>
+        <br>
+        <h>
+
+        <p>
+            <a class="btn btn-info" data-toggle="collapse" data-target="#collapse" role="button" aria-expanded="false" aria-controls="collapse" style="color: whitesmoke">
+                Airbnb Listings
+            </a>
+          </p>
+          <div class="collapse" id="collapse" style="width:700px">
+            <div class="card card-body">
+              <h2>Available listings in area</h2>
+              <table style="text-align: center; width: 680px" >
+                  <tr>
+                    <th>Area</th>                    
+                    <th>Guests</th>
+                    <th>Bedrooms</th>
+                    <th>Property Type</th>
+                    <th>Room Type</th> 
+                    <th>Price in USD</th>
+                  </tr>
+                  <tr>
+                    {% for i in df.iloc[0] %}
+                    <td> {{i}} </td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                      {% for i in df.iloc[1] %}
+                      <td> {{i}} </td>
+                      {% endfor %}
+                  </tr>
+                  <tr>
+                      {% for i in df.iloc[2] %}
+                      <td> {{i}} </td>
+                      {% endfor %}
+                  </tr>
+                  <tr>
+                      {% for i in df.iloc[3] %}
+                      <td> {{i}} </td>
+                      {% endfor %}
+                  </tr>
+                  <tr>
+                      {% for i in df.iloc[4] %}
+                      <td> {{i}} </td>
+                      {% endfor %}
+                  </tr>
+                </table>
+            </div>
+          </div>
+          <a href="/" target="_self" >
+            <button style="background-color: rgb(255, 90, 95); color: whitesmoke" class="btn btn-light">
+                Back to Home
+            </button>    
+          </a>      
+</center>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    </head>
+    <style>
+    h1 {
+        color: rgb(255, 90, 95);
+        font-weight: bold;
+        font-family: 'Brown';
+        font-size: 53px
+        ;
+    }
+    img{
+        margin-top: 20px
+    }
+    </style>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="http://localhost:5000/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://localhost:5000/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Info
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="http://localhost:5000/map">Map</a>
+                        <a class="dropdown-item" href="http://localhost:5000/price">Price per area</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+
+
+    <center>
+    <img src="http://localhost:5000/filetemp/airbnb-logo.png" width="500px" height="auto" alt="price estimator"/>     
+    <form action="http://localhost:5000/priceprediction" method="POST" name="myform">
+        <p><b>Airbnb Singapore</b></p>
+        <select name = "area" style="width: 500px" class="form-control" required="required">
+            <option value="Ang Mo Kio">Ang Mo Kio</option>
+            <option value="Bedok">Bedok</option>
+            <option value="Bishan">Bishan</option>
+            <option value="Bukit Batok">Bukit Batok</option>
+            <option value="Bukit Merah">Bukit Merah</option>
+            <option value="Bukit Panjang">Bukit Panjang</option>
+            <option value="Bukit Timah">Bukit Timah</option>
+            <option value="Bishan">Bishan</option>
+            <option value="Central Water Catchment">Central Water Catchment</option>
+            <option value="Choa Chu Kang">Choa Chu Kang</option>
+            <option value="Clementi">Clementi</option>                
+            <option value="Downtown Core">Downtown Core</option>
+            <option value="Geylang">Geylang</option>
+            <option value="Hougang">Hougang</option>                
+            <option value="Jurong East">Jurong East</option>
+            <option value="Jurong West">Jurong West</option>
+            <option value="Kallang">Kallang</option>
+            <option value="Mandai">Mandai</option>
+            <option value="Marine Parade">Marine Parade</option>
+            <option value="Museum">Museum</option>
+            <option value="Newton">Newton</option>
+            <option value="Novena">Novena</option>
+            <option value="Orchard">Orchard</option>
+            <option value="Outram">Outram</option>
+            <option value="Pasir Ris">Pasir Ris</option>
+            <option value="Paya Lebar">Paya Lebar</option>
+            <option value="Punggol">Punggol</option>
+            <option value="Queenstown">Queenstown</option>
+            <option value="River Valley">River Valley</option>
+            <option value="Rochor">Rochor</option>
+            <option value="Sembawang">Sembawang</option>
+            <option value="Sengkang">Sengkang</option>
+            <option value="Serangoon">Serangoon</option>
+            <option value="Singapore River">Singapore River</option>
+            <option value="Southern Islands">Southern Islands</option>            
+            <option value="Sungei Kadut">Sungei Kadut</option>
+            <option value="Tampines">Tampines</option>
+            <option value="Tanglin">Tanglin</option>
+            <option value="Toa Payoh">Toa Payoh</option>
+            <option value="Tuas">Tuas</option>
+            <option value="Western Water Catchment">Western Water Catchment</option>
+            <option value="Woodlands">Woodlands</option>
+            <option value="Yishun">Yishun</option>
+            <option disabled selected hidden>Where do you want to stay?</option>
+        </select>
+        <br>
+        <p><b>Accomodation</b></p>          
+        <div class="row" style="width: 500px">
+            <div class="col-md-6" style="width: 250px">    
+                <label for="guests">Guests:</label>
+                <input name="guests" placeholder="Guests" type="number" min="1" max="30" style="width: 250px" id="guests" class="form-control" required=True>
+            </div>
+            <div class="col-md-6" style="width: 250px">
+                <label for="bedrooms">Bedrooms:</label>   
+                <input name="bedrooms" placeholder="Bedrooms" type="number" min="1" max="30" style="width: 250px" id="bedrooms"class="form-control" required=True>
+            </div>
+        </div>
+        <br>
+        <p><b>Type of place</b></p> 
+        <div class="input-group mb-3" style="width: 500px">
+        <span class="input-group-text" style="width: 125px">Property Type</span>
+        <select name = "propertytype" style="width: 250px" class="form-control" required="required">
+            <option value="Apartment">Apartment</option>
+            <option value="Condominium">Condominium</option>
+            <option value="Hostel">Hostel</option>
+            <option value="House">House</option>
+            <option value="Serviced apartment">Service Apartment</option>         
+            <option disabled selected hidden>Property Type</option>
+        </select></div>
+
+        <div class="input-group mb-3" style="width: 500px">
+        <span class="input-group-text"style="width: 125px">Room Type</span>
+        <select name = "room" style="width: 250px" class="form-control" required="required">
+            <option value="Entire home/apt">Entire home/apartment</option>
+            <option value="Private room">Private room</option>
+            <option value="Shared room">Shared room</option>  
+            <option disabled  selected hidden>Room Type</option>
+        </select></div>
+        <br> 
+        <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="superhost" name="superhost" value="1">
+                <label class="custom-control-label" for="superhost"><p data-toggle="tooltip" title="Superhost is a certified title hosts given by Airbnb">Host is superhost</p></label>
+      
+        </div>
+        
+        <br>
+        <button type="submit" style="background-color: rgb(4, 122, 133); color: whitesmoke" class="btn btn-info">
+            Submit
+        </button>
+    </form>
+
+    </center>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
