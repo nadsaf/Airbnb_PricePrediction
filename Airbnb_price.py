@@ -65,7 +65,7 @@ def priceprediction():
 
         # Recommendation based on Area
         df = pd.read_csv('data-airbnbsg_cleaned.csv')
-        df =  df[['area','accommodates','bedrooms', 'property_type', 'room_type','total_price']]
+        df =  df[['area','accommodates','bedrooms', 'property_type', 'room_type','total_price', 'host_is_superhost']]
         if df['area'].str.contains(str(area)).count() > 0:
             df = df[df['area'] == str(area)]
             if df[df['accommodates'] == guests]['accommodates'].count() > 0:
@@ -76,7 +76,7 @@ def priceprediction():
                 df = df[df['accommodates'] < guests]
         else:
             df = df
-
+        df['host_is_superhost'] = df['host_is_superhost'].map({0: 'Not Superhost', 1:'Superhost'})    
         df = df.head()
         print(df)
 

@@ -35,14 +35,14 @@ df['host_response_rate'] = df['host_response_rate'].apply(lambda x: float(str(x)
 
 group_categorical = ['neighbourhood_cleansed','neighbourhood_group_cleansed','property_type', 'room_type', 'bed_type', 'cancellation_policy']
 group_full_text = ['name', 'summary', 'space','description', 'experiences_offered', 'neighborhood_overview', 'notes','smart_location', 'transit', 'access','interaction', 'house_rules', 'host_about', 'host_location', 'host_neighbourhood', 'street', 'city','neighbourhood']
-group_dropping = ['host_response_time','listing_url', 'scrape_id', 'picture_url', 'host_url', 'host_thumbnail_url', 'host_picture_url', 'last_scraped', 'host_name', 'calendar_last_scraped', 'calendar_updated', 'host_verifications', 'amenities','zipcode','market', 'country', 'requires_license', 'is_business_travel_ready', 'require_guest_profile_picture', 'require_guest_phone_verification', 'is_location_exact',  'host_has_profile_pic', 'host_identity_verified', 'country_code']
+group_dropping = ['host_response_time','listing_url', 'scrape_id', 'picture_url', 'host_url', 'host_thumbnail_url', 'host_picture_url', 'last_scraped', 'host_name', 'calendar_last_scraped', 'calendar_updated', 'host_verifications','zipcode','market', 'country', 'requires_license', 'is_business_travel_ready', 'require_guest_profile_picture', 'require_guest_phone_verification', 'is_location_exact',  'host_has_profile_pic', 'host_identity_verified', 'country_code']
 group_date = ['host_since', 'first_review', 'last_review']
 group_bool = ['host_is_superhost', 'instant_bookable','has_availability']
 group_money = ['extra_people', 'cleaning_fee', 'security_deposit', 'price']
-
+group_list = ['amenities']
 df[group_bool] = df[group_bool].apply(lambda x: pd.Series(x).map({'t' : 1, 'f': 0}))
 # print(df[group_bool])
-
+df[group_date] = df[group_date].apply(lambda x: pd.factorize(x, sort=True)[0])
 df[group_money] = df[group_money].apply(lambda x: x.str.replace("$", "").str.replace(",","").astype('float'))
 df[['cleaning_fee', 'security_deposit']] = df[['cleaning_fee', 'security_deposit']].fillna(round(df[['cleaning_fee', 'security_deposit']].mean()))  
 
@@ -56,6 +56,16 @@ df = df.drop(df.index[a])
 
 df = df[df['bed_type'] == 'Real Bed']
 
+def list_replace(l):
+    l = l.str.replace('[', '')
+    l = l.str.replace(']', '')
+    l = l.str.replace('{', '')
+    l = l.str.replace('}', '')
+    l = l.str.replace("'", '')
+    l = l.str.replace('"', '')
+    return l
+df[group_list] = df[group_list].apply(lambda x: list_replace(x))
+
 #================================================= Grouping numerical features =================================================
 
 group_numeric = df.select_dtypes(include=['int64', 'float64']).columns.values
@@ -63,7 +73,7 @@ group_numeric = df.select_dtypes(include=['int64', 'float64']).columns.values
 
 df = df.dropna(subset=['number_of_reviews', 'bathrooms', 'bedrooms', 'beds', 'accommodates'])
 
-df['bedrooms'] = df['bedrooms'].clip(lower=1, upper=10)
+df['bedrooms'] = df['bedrooms'].clip(lower=1, upper=7)
 
 df = df[df['minimum_nights_avg_ntm'] <30]
 
